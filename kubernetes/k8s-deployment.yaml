@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: l7-fc-mockservices-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: l7-fc-mockservices
+  template:
+    metadata:
+      labels:
+        app: l7-fc-mockservices-pods
+    spec:
+      containers:
+        - name: l7-fc-mockservices-container
+          image: my-docker-registry/l7-fc-mockservices:latest
+          ports:
+            - containerPort: 8080
+          # Other container configuration (environment variables, volume mounts, etc.)
